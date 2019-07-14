@@ -1,0 +1,46 @@
+page-scoring {
+  $incButtonSize: 30px;
+
+  .toolbar-content {
+    display:flex;
+  }
+
+  .rings-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .rings {
+    flex: 1 1 auto;
+    text-align: center
+  }
+
+  .rings-number {
+    text-align: center;
+    margins: 10px;
+    padding: 15px;
+    border: 2px solid gray;
+    background-color:lightgray;
+  }
+
+  .incrementArrow {
+    flex: 1 1 auto;
+    font-size: $incButtonSize;
+  }
+
+  .decrementArrow {
+    flex: 1 1 auto;
+    font-size: $incButtonSize;
+  }
+
+  .currentIncDecValue {
+    flex: 1 1 auto;
+    font-size: $incButtonSize - 5px;
+  }
+
+  .incDecContainer {
+    display:flex;
+    float:right;
+    width:40%
+  }
+}

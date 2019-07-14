@@ -1,0 +1,88 @@
+<!--
+  Generated template for the ScoringPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="flex 1 1 auto">Unleash the Rings</ion-title>
+    <ion-buttons end>
+      <button end ion-button icon-only color="light" class="clearIcon" tappable (click)="clear()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2>{{teleopMode?"Teleoperated":"Autonomous"}}</h2>
+        <p>Autonomous Points: {{autoTotal()}}</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="teleopMode" (ionChange)="autoToggle()"></ion-toggle>
+    </ion-item>
+
+    <div class="rings-container item" [hidden]="teleopMode">
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Leaner.png" tappable (click)="rings.auto.l = rings.auto.l + 1" />
+        <div class="rings-number" tappable (click)="rings.auto.l = max(rings.auto.l - 1, 0)">{{rings.auto.l}}</div>
+      </div>
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Ringer.png" tappable (click)="rings.auto.r = rings.auto.r + 1" />
+        <div class="rings-number" tappable (click)="rings.auto.r = max(rings.auto.r - 1, 0)">{{rings.auto.r}}</div>
+      </div>
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Toasted.png" tappable (click)="rings.auto.t = rings.auto.t + 1" />
+        <div class="rings-number" tappable (click)="rings.auto.t = max(rings.auto.t - 1, 0)">{{rings.auto.t}}</div>
+      </div>
+    </div>
+
+
+    <div class="rings-container item" [hidden]="!teleopMode">
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Leaner.png" tappable (click)="rings.teleop.l = rings.teleop.l + 1" />
+        <div class="rings-number" tappable (click)="rings.teleop.l = max(rings.teleop.l - 1, 0)">{{rings.teleop.l}}</div>
+      </div>
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Ringer.png" tappable (click)="rings.teleop.r = rings.teleop.r + 1" />
+        <div class="rings-number" tappable (click)="rings.teleop.r = max(rings.teleop.r - 1, 0)">{{rings.teleop.r}}</div>
+      </div>
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/RingerPurple.png" tappable (click)="rings.teleop.rc = rings.teleop.rc + 1" />
+        <div class="rings-number" tappable (click)="rings.teleop.rc = max(rings.teleop.rc - 1, 0)">{{rings.teleop.rc}}</div>
+      </div>
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Toasted.png" tappable (click)="rings.teleop.t = rings.teleop.t + 1" />
+        <div class="rings-number" tappable (click)="rings.teleop.t = max(rings.teleop.t - 1, 0)">{{rings.teleop.t}}</div>
+      </div>
+      <div class="rings">
+        <img class="rings-image" src="assets/imgs/Unleashed.png" tappable (click)="rings.teleop.u = rings.teleop.u + 1" />
+        <div class="rings-number" tappable (click)="rings.teleop.u = max(rings.teleop.u - 1, 0)">{{rings.teleop.u}}</div>
+      </div>
+    </div>
+
+    <!--ion-item [hidden]="teleopMode">
+      rings Touching
+      <div class="incDecContainer">
+        <ion-icon class="decrementArrow" name="arrow-dropdown-circle" tappable (click)="autoBlocksTouching = max(autoBlocksTouching - 1, 0)"></ion-icon>
+        <div class="currentIncDecValue">{{autoBlocksTouching}}</div>
+        <ion-icon class="incrementArrow" name="arrow-dropup-circle" tappable (click)="autoBlocksTouching = autoBlocksTouching + 1"></ion-icon>
+      </div>
+    </ion-item-->
+
+    <ion-item>
+      <button ion-button style="height:35px" color="danger" tappable (click)="touchPenalties = touchPenalties + 1" col-9>Touch Penalty</button>
+      <button ion-button style="height:35px" color="light" tappable (click)="touchPenalties = max(touchPenalties - 1, 0)" col-2>{{touchPenalties}}</button>
+    </ion-item>
+
+    <ion-item>
+      <h2>Total: {{autoTotal()}} + {{teleopTotal()}} - {{touchPenalties*5}} = {{autoTotal() + teleopTotal() - touchPenalties*5}}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>
